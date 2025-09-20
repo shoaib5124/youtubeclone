@@ -68,7 +68,7 @@ Router.post('/login',async(req,res)=>{
     try
     {
       // Find user against given email  
-       const users = await User.find({email:req.body.email})        
+       const users = await User.find({email:req.body.email})     
 
       //If user does not find,it will return an empty array
       // So if length of array is zero show error 
@@ -191,6 +191,43 @@ Router.put('/subscribe/:userId',checkAuth,async(req,res)=>{
       error:err
   })
  }
+})
+
+// unsubscribe api
+Router.put('/unsubscribe/:userId',checkAuth,async(req,res)=>{
+  try
+  {
+     const userA = await jwt.verify(req.headers.authorization.split(" ")[1],'sbs shoaib ul hassan 123')
+    //  console.log(userA)
+     const userB = await User.findById(req.params.userId)
+    //  console.log(userB)   
+     if(userB.subscribedBy.includes(userA._id))
+     {
+      userB.subscribers -= 1
+      userB.subscribedBy = userB.subscribedBy.filter(userId=>userId.toString()!= userA._id.toString())
+      userB.save()
+      const userAFullInfo = await User.findById(userA._id)
+      console.log(userAFullInfo)
+      userAFullInfo.subscribedChannels = userAFullInfo.subscribedChannels.filter(userId=>userId.toString()!= userB._id)
+      await userAFullInfo.save()
+      res.status(200).json({
+        msg:"Unsubscribed"    
+      })
+     }
+     else
+     {
+      return res.status(500).json({
+        error:"You  did not subscribe channel"
+      })
+     }
+  }
+  catch(err)
+  {
+    console.log(err)
+    res.status(500).json({
+      error:err
+    })
+  }
 })
 
 module.exports = Router

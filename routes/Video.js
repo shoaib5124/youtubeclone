@@ -169,7 +169,7 @@ Router.put('/like/:videoId',checkAuth,async(req,res)=>{
       if(video.likedBy.includes(verifiedUser._id))
       {
          return res.status(500).json({
-            err:"You have already lliked this video"
+            err:"You have already liked this video"
          })
       }
       if(video.DisLikedBy.includes(verifiedUser._id))
@@ -235,4 +235,25 @@ Router.put('/dislike/:videoId',checkAuth,async(req,res)=>{
       })
    }
 })        
+
+// Views Api
+Router.put('/views/:videoId',async(req,res)=>{
+   try
+   {
+      const video = await Video.findById(req.params.videoId)
+      console.log(video)
+      video.views += 1;
+      await video.save();
+      res.status(200).json({
+      msg:'okkk'
+      })
+   }
+   catch(err)
+   {
+      console.log(err)
+      res.status(500).json({
+         error:err
+      })
+   }
+})
 module.exports = Router;

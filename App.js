@@ -6,6 +6,9 @@ const userRoute = require("../API/routes/User");
 // importing video routes
 const videoRoute = require("../API/routes/Video");
 
+// Importing comment routs
+const commentRoute = require("../API/routes/Comment");
+
 // importing body parser
 const bodyParser = require("body-parser")
 
@@ -49,6 +52,9 @@ app.use(fileUpload({
 
 // if anyone hits /user this main app will direct it to user route
 app.use('/user',userRoute)
+
+// if anyone hits /Comments this main app will direct it to user route
+app.use('/comment',commentRoute)
 
 // if anyone hits /video this main app will direct it to video route
 app.use('/video',videoRoute)

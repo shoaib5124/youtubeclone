@@ -11,11 +11,11 @@ const videoSchema = new mongoose.Schema({
     thumbnailId:{type:String,required:true},
     category:{type:String,required:true},
     tags:[{type:String}],
-    likes:{type:Number,default:0,},
+    likes:{type:Number,default:0},
     dislikes:{type:Number,default:0},
     likedBy:[{type:mongoose.Schema.Types.ObjectId,ref:"User"}],
     DisLikedBy:[{type:mongoose.Schema.Types.ObjectId,ref:"User"}],
-    views:[{type:mongoose.Schema.Types.ObjectId,ref:"User"}],
+    views:{type:Number,default:0}
 
 
 },{timestamps:true})
