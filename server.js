@@ -2,7 +2,7 @@
 const http = require("http");
 
 // Importing app.js to put in server
-const app = require("../API/App");
+const app = require("./App");
 
 // Creating server
 const server = http.createServer(app);
