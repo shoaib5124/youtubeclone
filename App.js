@@ -1,13 +1,13 @@
 // impoting express.js by require keyword
 const  express = require("express");
 // importing user routes
-const userRoute = require("../API/routes/User");
+const userRoute = require("./routes/User");
 
 // importing video routes
-const videoRoute = require("../API/routes/Video");
+const videoRoute = require("./routes/Video");
 
 // Importing comment routs
-const commentRoute = require("../API/routes/Comment");
+const commentRoute = require("./routes/Comment");
 
 // importing body parser
 const bodyParser = require("body-parser")
