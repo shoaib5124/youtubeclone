@@ -50,6 +50,11 @@ app.use(fileUpload({
     // tempFileDir:'/temp'
 }));
 
+// root route
+app.get("/", (req, res) => {
+  res.send("🚀 API is running successfully");
+});
+
 // if anyone hits /user this main app will direct it to user route
 app.use('/user',userRoute)
 
