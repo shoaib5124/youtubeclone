@@ -21,6 +21,7 @@ require('dotenv').config();
 // Importing mongoose a library used to connect backend with database
 const mongoose = require("mongoose");
 
+const cors =require('cors');
 // Using async await 
 const connectWithDatabase = async()=>{
     // In case of successfull execution try will run
@@ -42,6 +43,8 @@ connectWithDatabase()
 
 // creating app
 const app = express();
+
+app.use(cors())
 // To read and acces client-sent data
 app.use(bodyParser.json())
 
