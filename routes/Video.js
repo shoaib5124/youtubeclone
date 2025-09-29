@@ -48,9 +48,9 @@ Router.post('/upload',checkAuth,async(req,res)=>{
    }
    catch(err)
    {
-    console.log(err)
+    console.log(err.message)
     res.status(500).json({
-      error:err
+      error:err.message  || "Something went wrong on the server 🚨"
     })
    }
 })
