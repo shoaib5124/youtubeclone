@@ -115,7 +115,6 @@ Router.put('/:videoId',checkAuth,async(req,res)=>{
             const updatedData = {
                title:req.body.title,
                description:req.body.description,
-               tags:req.body.tags.split(","),
             }
 
             const updtedVideoDetail = await Video.findByIdAndUpdate(req.params.videoId,updatedData)
